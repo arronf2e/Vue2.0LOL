@@ -18,10 +18,6 @@ Vue.use(VueLazyload, {
   attempt: 1
 })
 
-router.afterEach((to,from,next) => {
-  console.log(window.screenTop)
-  window.scrollTo(0, 0)
-})
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

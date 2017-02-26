@@ -45,10 +45,10 @@
           </p>
         </div>
         <div class="skins" v-else>
+          <p class="title"><icon name="lol" :scale="2"></icon><span>点击皮肤可以观看介绍视频哦</span></p>
           <ul>
-            <li v-for="skin in skins">
+            <li v-for="(skin,index) in skins" v-if="index > 0">
               <a :href="skin.videourl">
-                <!--<img :src="skin.skinurl" alt="">-->
                 <v-img :imgUrl="skin.skinurl"></v-img>
               </a>
               <p>
@@ -183,6 +183,17 @@ export default {
       }
     }
     .skins {
+      padding: 12px;
+      .title {
+        border-bottom: 5px solid #f0f0f0;
+        margin-bottom: 5px;
+        span {
+          font-size: 15px; 
+        }
+        svg {
+          margin-right: 2px;
+        }
+      }
       ul {
         width: 100%;
         display: flex;
@@ -191,10 +202,13 @@ export default {
         li {
           width: 100%;
           text-align: center;
-          img {
-            width: 90%;
-            height: 190px;
-          }
+          a {
+            display: block;
+            img {
+              width: 90%;
+              height: 190px;
+            }
+          } 
           p {
             padding: 5px 0;
             font-size: 14px;

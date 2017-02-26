@@ -22,7 +22,7 @@ export default new Router({
         {
           path: 'about',
           name: 'about',
-          component: require('../views/About')
+          component: require('../views/About')      
         }, {
           path: 'championList',
           name: 'championList',
@@ -30,7 +30,14 @@ export default new Router({
         }, {
           path: 'championDetail/:id',
           name: 'championDetail',
-          component: require('../views/championDetail')
+          component: require('../views/championDetail'),
+          beforeEnter: (to, from, next) => {
+            if (from.name == 'championList') {
+              let container = document.getElementById('index-container')
+              container.scrollTop = 0
+            }
+            next()
+          }     
         },
         {
           path: 'player',

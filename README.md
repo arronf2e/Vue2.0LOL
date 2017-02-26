@@ -28,6 +28,6 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 
   英雄技能列表页超出了横屏
 
-  图片懒加载
+  图片懒加载  fixed
 
   动态设置标题

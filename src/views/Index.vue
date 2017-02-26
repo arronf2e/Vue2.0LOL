@@ -5,9 +5,9 @@
         <mt-button  @click="goback">返回</mt-button>
       </router-link>
     </mt-header>
-    <div class="index-container">
-      <transition>
-        <router-view replace></router-view>
+    <div class="index-container" id="index-container">
+      <transition name="">
+        <router-view></router-view>
       </transition>
     </div>
     <mt-tabbar v-model="selected">
@@ -68,10 +68,10 @@ export default {
   }
 }
 
-// .bounce-enter-active, .bounce-leave-active {
-//   animation: slideInLeft 0.1s;
-// }
-// .bounce-enter, .bouncede-leave-to /* .fade-leave-active in <2.1.8 */ {
-//   animation: slideOutRight 0.1s;
-// }
+.bounce-enter-active, .bounce-leave-active {
+  animation: slideInRight 0.1s;
+}
+.bounce-enter, .bouncede-leave-to /* .fade-leave-active in <2.1.8 */ {
+  animation: slideOutLeft 0.1s;
+}
 </style>
