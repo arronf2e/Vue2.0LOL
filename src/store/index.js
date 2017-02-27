@@ -5,12 +5,13 @@ import axios from 'axios'
 Vue.use(Vuex)
 
 const TOKEN = {
-  "DAIWAN-API-TOKEN": "23487-B3428-43746-B8884"
+  "DAIWAN-API-TOKEN": "AC239-3FDD3-DF1A4-C99D9"
 }
 
 const API = {
   championList: 'http://lolapi.games-cube.com/champion',
-  championDetail: 'http://lolapi.games-cube.com/GetChampionDetail?champion_id='
+  championDetail: 'http://lolapi.games-cube.com/GetChampionDetail?champion_id=',
+  playerSearch: 'http://lolapi.games-cube.com/UserArea?keyword='
 }
 
 const store = new Vuex.Store({
@@ -18,7 +19,8 @@ const store = new Vuex.Store({
     title: '英雄联盟助手',
     championList: [],
     champion: null,
-    championDetailBg: ''
+    championDetailBg: '',
+    playerSearchResult: []
   },
   mutations: {
     get_champion_list(state) {
@@ -28,11 +30,18 @@ const store = new Vuex.Store({
         state.championList = res.data.data
       })
     },
-    get_champion_detail(state,object) {
+    get_champion_detail(state, object) {
       axios.get(API.championDetail + object.id, {
         headers: TOKEN
       }).then((res) => {
         state.champion = res.data.data[0]
+      })
+    },
+    get_player_search(state, object) {
+      axios.get(API.playerSearch + object.name, {
+        headers: TOKEN
+      }).then((res) => {
+        state.playerSearchResult = res.data.data
       })
     }
   },
@@ -42,6 +51,9 @@ const store = new Vuex.Store({
     },
     GET_CHAMPION_DETAIL(context, object) {
       context.commit('get_champion_detail', object)
+    },
+    GET_PLAYER_SEARCH(context, object) {
+      context.commit('get_player_search', object)
     }
   },
   getters: {
