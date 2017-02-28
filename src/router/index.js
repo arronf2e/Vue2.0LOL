@@ -44,6 +44,21 @@ export default new Router({
           name: 'player',
           component: require('../views/player')
         }, {
+          path: 'playerDetail/:vaid/:qquin',
+          name: 'playerDetail',
+          component: require('../views/playerdetail'),
+          beforeEnter: (to, from, next) => {
+            if (from.name == 'player') {
+              let container = document.getElementById('index-container')
+              container.scrollTop = 0
+            }
+            next()
+          }     
+        }, {
+          path: '/combatDetail/:vaid/:qquin/:gameid',
+          name: 'combatDetail',
+          component: require('../views/CombatDetail')
+        }, {
           path: 'video',
           name: 'video',
           component: require('../views/video')

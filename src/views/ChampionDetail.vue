@@ -162,7 +162,9 @@ export default {
       &-list {
         &-item {
           display: flex;
+          display: -webkit-flex;
           flex-direction: row;
+          -webkit-flex-direction: row;
           margin-bottom: 5px;
           border-bottom: 1px solid #f0f0f0;
           &_img {
