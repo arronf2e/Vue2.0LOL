@@ -3,6 +3,11 @@
 vuejs League of Legends  project
 
 
+[在线地址](http://omeme.me/demos/lol/)
+<p><img src="http://o9xap42x4.bkt.clouddn.com/lol.png" width="200" height="200"/></p>
+<p>微信扫一扫，查看在线DEMO</p>
+
+
 #### 1. 技术栈
 
 由 [vue-cli](https://github.com/vuejs/vue-cli) + [mint-ui](https://github.com/ElemeFE/mint-ui) 构建，使用 [axios](https://github.com/mzabriskie/axios) 进行数据的请求，使用 [vuex](https://github.com/vuejs/vuex) 进行状态管理，图片懒加载: [vue-lazyload](https://github.com/hilongjw/vue-lazyload)。
