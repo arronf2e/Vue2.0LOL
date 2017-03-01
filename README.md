@@ -59,6 +59,7 @@ vuejs League of Legends  project
 - [ ] 视频页
 - [ ] 完善API文档
 - [ ] 召唤师搜索页内容的丰富
+- [ ] 页面切换时的动画效果
 
 #### 6. 结语
 
