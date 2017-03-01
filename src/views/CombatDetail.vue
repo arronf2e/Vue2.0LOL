@@ -3,7 +3,7 @@
     <div class="combat-detail" v-if="combatDetail !== null">
       <div class="combat-detail-info">
         <p>
-          开始时间: {{ combatDetail.start_time.split(' ')[1] }}
+          开始时间: {{ combatDetail.start_time.split(' ')[1].slice(0,5) }}
         </p>
         <p>
           总时长: {{ Math.ceil(combatDetail.duration/60) }}分钟
