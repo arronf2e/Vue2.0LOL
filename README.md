@@ -31,3 +31,5 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
   图片懒加载  fixed
 
   动态设置标题
+
+  战绩列表上划加载

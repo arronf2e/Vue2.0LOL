@@ -57,7 +57,14 @@ export default new Router({
         }, {
           path: '/combatDetail/:vaid/:qquin/:gameid',
           name: 'combatDetail',
-          component: require('../views/CombatDetail')
+          component: require('../views/CombatDetail'),
+          beforeEnter: (to, from, next) => {
+            if (from.name == 'playerDetail') {
+              let container = document.getElementById('index-container')
+              container.scrollTop = 0
+            }
+            next()
+          }   
         }, {
           path: 'video',
           name: 'video',

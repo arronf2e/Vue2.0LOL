@@ -42,8 +42,8 @@
         </div>
       </div>
       <div class="player-detail-combats">
-        <ul>
-          <router-link tag="li" v-for="combat in combatList[0]" :to="{name: 'combatDetail', params: {gameid: combat.game_id}}">
+        <ul v-if="combatList.length > 0">
+          <router-link tag="li" v-for="combat in combatList" :to="{name: 'combatDetail', params: {gameid: combat.game_id}}">
             <div class="icon">
               <img :src="pics + combat.champion_id + '.png'" alt="">
             </div>
@@ -60,6 +60,10 @@
             </div>
           </router-link>
         </ul>
+        <div v-else class="player-detail-combats-none">
+          <p>暂无战绩</p>
+          <img src="http://o9xap42x4.bkt.clouddn.com/empty1.png" alt="">
+        </div>
       </div>
     </div>
     <Loading v-else></Loading>
@@ -85,7 +89,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['playerDetail', 'tierQueue', 'tripleKills', 'quadraKills', 'pentaKills', 'godlikeNum', 'killsTotal', 'totalMvps', 'combatList'])
+    ...mapState(['playerDetail', 'tierQueue', 'tripleKills', 'quadraKills', 'pentaKills', 'godlikeNum', 'killsTotal', 'totalMvps', 'combatList', 'busy'])
   },
   methods: {
     getDetail () {
@@ -104,15 +108,16 @@ export default {
       this.$store.dispatch('GET_COMBAT_LIST', params)
     },
     ...mapMutations([
-      'empty_combat_list'
-    ]),
+      'empty_combat_list',
+      'updateLoading'
+    ])
   },
   components: {
     Loading
   },
   filters: {
-    getAreaName: getAreaName,
-    getCombatType: getCombatType
+    getAreaName,
+    getCombatType
   }
 }
 </script>
@@ -163,10 +168,16 @@ export default {
   &-combats {
     ul {
       li {
-        padding: 0 30px;
         display: flex;
         flex-direction: row;
+        padding: 10px 0;
+        padding-left: 10px;
+        border-bottom: 1px solid blanchedalmond;
         .icon {
+          flex: 1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
           img {
             width: 35px;
             height: 35px;
@@ -175,8 +186,11 @@ export default {
           }
         }
         .combat-info {
+          flex: 5;
+          padding-left: 5px;
+          padding-top: 5px;
           &-result {
-
+            font-size: 14px;
           }
           .win {
             color: #26a2ff;
@@ -184,10 +198,36 @@ export default {
           .lose {
             color: #ff0000;
           }
+          &-mode {
+            color: #999;
+            font-size: 12px;
+          }
         }
         .arrow-right {
-
+          flex: 1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          img {
+            width: 16px;
+            height: 16px;
+          }
         }
+      }
+    }
+    &-none {
+      padding-top: 25px;
+      text-align: center;
+      p {
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        color: #26a2ff;
+        padding: 10px 0;
+      }
+      img {
+        width: 80px;
+        height: 80px;
       }
     }
   }

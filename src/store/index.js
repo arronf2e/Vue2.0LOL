@@ -5,7 +5,7 @@ import axios from 'axios'
 Vue.use(Vuex)
 
 const TOKEN = {
-  "DAIWAN-API-TOKEN": "EC4D3-3246D-7DA01-ADCDD"
+  "DAIWAN-API-TOKEN": "F4E9C-448AB-2BF93-4E988"
 }
 
 const API = {
@@ -15,12 +15,14 @@ const API = {
   playerDetail: 'http://lolapi.games-cube.com/UserHotInfo?qquin=',
   getTierQueue: 'http://lolapi.games-cube.com/GetTierQueue?tier=',
   playExtInfo: 'http://lolapi.games-cube.com/UserExtInfo?qquin=',
-  combatList: 'http://lolapi.games-cube.com/CombatList?qquin='
+  combatList: 'http://lolapi.games-cube.com/CombatList?qquin=',
+  combatDetail: 'http://lolapi.games-cube.com/GameDetail?qquin='
 }
 // playerDetail: http://lolapi.games-cube.com/UserHotInfo?qquin={qquin}&vaid={vaid}
 // 段位  http://lolapi.games-cube.com/GetTierQueue?tier={tier}&queue={queue}
 // 详细信息  http://lolapi.games-cube.com/UserExtInfo?qquin={qquin}&vaid={vaid}
 // 战斗数据  http://lolapi.games-cube.com/CombatList?qquin={qquin}&vaid={vaid}&p={p}
+// 单场游戏数据： http://lolapi.games-cube.com/GameDetail?qquin={qquin}&vaid={vaid}&gameid={gameid}
 
 const store = new Vuex.Store({
   state: {
@@ -37,7 +39,9 @@ const store = new Vuex.Store({
     godlikeNum: 0,
     killsTotal: 0,
     totalMvps: 0,
-    combatList: []
+    combatList: [],
+    busy: false,
+    combatDetail: null
   },
   mutations: {
     get_champion_list(state) {
@@ -46,6 +50,7 @@ const store = new Vuex.Store({
       }).then((res) => {
         if (res.data.code == 0) {
           state.championList = res.data.data
+          state.title = '英雄列表'
         }
       })
     },
@@ -55,6 +60,7 @@ const store = new Vuex.Store({
       }).then((res) => {
         if (res.data.code == 0) {
           state.champion = res.data.data[0]
+          state.title = state.champion.name
         }
       })
     },
@@ -64,6 +70,7 @@ const store = new Vuex.Store({
       }).then((res) => {
         if (res.data.code == 0) {
           state.playerSearchResult = res.data.data
+          state.title = '搜索召唤师'
         }
       })
     },
@@ -75,6 +82,7 @@ const store = new Vuex.Store({
       }).then((res) => {
         if (res.data.code == 0) {
           state.playerDetail = res.data.data[0]
+          state.title = state.playerDetail.name
           axios.get(API.getTierQueue + res.data.data[0].tier + '&queue=' + res.data.data[0].queue, {
             headers: TOKEN
           }).then((res) => {
@@ -106,12 +114,25 @@ const store = new Vuex.Store({
         headers: TOKEN
       }).then((res) => {
         if (res.data.code == 0) {
-            state.combatList.push(res.data.data[0].battle_list)
+            state.combatList = state.combatList.concat(res.data.data[0].battle_list)
+        }
+      })
+    },
+    get_combat_detail(state, object) {
+      axios.get(API.combatDetail + object.qquin + '&vaid=' + object.vaid + '&gameid=' + object.gameid, {
+        headers: TOKEN
+      }).then((res) => {
+        if (res.data.code == 0) {
+            state.combatDetail = res.data.data[0].battle
+            state.title = '对战详情'
         }
       })
     },
     empty_combat_list(state) {
       state.combatList = []
+    },
+    updateLoading(state) {
+      state.busy = !state.busy
     }
   },
   actions: {
@@ -129,6 +150,9 @@ const store = new Vuex.Store({
     },
     GET_COMBAT_LIST(context, object) {
       context.commit('get_combat_list', object)
+    },
+    GET_COMBAT_DETAIL(context, object) {
+      context.commit('get_combat_detail', object)
     }
   },
   getters: {
@@ -159,6 +183,12 @@ const store = new Vuex.Store({
         skills.push(obj)
       }
       return skills
+    },
+    winners (state) {
+      return state.combatDetail.gamer_records.slice(0,5)
+    },
+    losers (state) {
+      return state.combatDetail.gamer_records.slice(-5)
     }
   }
 })

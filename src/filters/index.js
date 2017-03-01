@@ -1,8 +1,3 @@
-import axios from 'axios'
-
-const TOKEN = {
-  "DAIWAN-API-TOKEN": "EC4D3-3246D-7DA01-ADCDD"
-}
 
 const GAME_TYPE = {
   '3':'匹配赛',

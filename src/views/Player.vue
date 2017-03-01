@@ -29,7 +29,7 @@
 </template>
 <script>
 import { Toast } from 'mint-ui'
-import { mapState, mapActions, mapMutations } from 'vuex'
+import { mapState, mapActions, mapMutations, mapGetters } from 'vuex'
 import { getAreaName } from '../filters'
 // http://cdn.tgp.qq.com/lol/images/resources/usericon/icon_id.png
 const TGPICON = 'http://cdn.tgp.qq.com/lol/images/resources/usericon/'
@@ -43,9 +43,9 @@ export default {
   mounted () {
     this.empty_player_search()
   },
-  computed: mapState({
-    playerSearchResult: state => state.playerSearchResult
-  }),
+  computed: {
+    ...mapState(['playerSearchResult'])
+  },
   methods: {
     playerSearch () {
       if (this.name == '') {
@@ -61,10 +61,7 @@ export default {
     ]),
   },
   filters: {
-    getAreaName: getAreaName
-  },
-  components: {
-    
+    getAreaName
   }
 }
 </script>
