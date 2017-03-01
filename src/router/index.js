@@ -69,6 +69,10 @@ export default new Router({
           path: 'video',
           name: 'video',
           component: require('../views/video')
+        }, {
+          path: 'news',
+          name: 'news',
+          component: require('../views/News')
         }
       ]
     }

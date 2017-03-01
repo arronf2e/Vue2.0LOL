@@ -5,7 +5,7 @@ import axios from 'axios'
 Vue.use(Vuex)
 
 const TOKEN = {
-  "DAIWAN-API-TOKEN": "F4E9C-448AB-2BF93-4E988"
+  "DAIWAN-API-TOKEN": "6745A-A8696-53335-948D9"
 }
 
 const API = {
@@ -16,13 +16,16 @@ const API = {
   getTierQueue: 'http://lolapi.games-cube.com/GetTierQueue?tier=',
   playExtInfo: 'http://lolapi.games-cube.com/UserExtInfo?qquin=',
   combatList: 'http://lolapi.games-cube.com/CombatList?qquin=',
-  combatDetail: 'http://lolapi.games-cube.com/GameDetail?qquin='
+  combatDetail: 'http://lolapi.games-cube.com/GameDetail?qquin=',
+  newstVideos: 'http://infoapi.games-cube.com/GetNewstVideos?p=',
+  commenterList: 'http://infoapi.games-cube.com/GetAuthors'
 }
 // playerDetail: http://lolapi.games-cube.com/UserHotInfo?qquin={qquin}&vaid={vaid}
 // 段位  http://lolapi.games-cube.com/GetTierQueue?tier={tier}&queue={queue}
 // 详细信息  http://lolapi.games-cube.com/UserExtInfo?qquin={qquin}&vaid={vaid}
 // 战斗数据  http://lolapi.games-cube.com/CombatList?qquin={qquin}&vaid={vaid}&p={p}
 // 单场游戏数据： http://lolapi.games-cube.com/GameDetail?qquin={qquin}&vaid={vaid}&gameid={gameid}
+// 最新视频： http://infoapi.games-cube.com/GetNewstVideos?p={p}
 
 const store = new Vuex.Store({
   state: {
@@ -40,8 +43,10 @@ const store = new Vuex.Store({
     killsTotal: 0,
     totalMvps: 0,
     combatList: [],
-    busy: false,
-    combatDetail: null
+    combatDetail: null,
+    newstVideos: null,
+    newstNews: null,
+    bannerNews: null
   },
   mutations: {
     get_champion_list(state) {
@@ -131,8 +136,27 @@ const store = new Vuex.Store({
     empty_combat_list(state) {
       state.combatList = []
     },
-    updateLoading(state) {
-      state.busy = !state.busy
+    get_newst_videos(state, object) {
+      state.title = '视频'
+      // axios.get('/api//GetNewstVideos?p=' + object.p, {
+      //   headers: TOKEN
+      // }).then((res) => {
+      //   if (res.data.code == 0) {
+      //       state.newstVideos = state.newstVideos.concat(res.data.data)
+      //   }
+      // })
+    },
+    get_newst_news(state) {
+      state.title = '最新资讯'
+      axios.get('http://qt.qq.com/php_cgi/news/php/varcache_getnews.php?id=12&page=0&plat=ios&version=33').then((res) => {
+        state.newstNews = res.data.list
+      })
+      axios.get('http://qt.qq.com/static/pages/news/phone/c13_list_1.shtml').then((res) => {
+        state.bannerNews = res.data.list
+      })
+    },
+    set_title(state, val) {
+      state.title = val
     }
   },
   actions: {
@@ -153,6 +177,12 @@ const store = new Vuex.Store({
     },
     GET_COMBAT_DETAIL(context, object) {
       context.commit('get_combat_detail', object)
+    },
+    GET_NEWST_VIDEOS(context, object) {
+      context.commit('get_newst_videos', object)
+    },
+    GET_NEWST_NEWS(context) {
+      context.commit('get_newst_news')
     }
   },
   getters: {

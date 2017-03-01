@@ -1,5 +1,8 @@
 <template>
-  <div>
+  <div v-infinite-scroll="loadMore"
+          infinite-scroll-disabled="busy"
+          infinite-scroll-distance="5"
+          infinite-scroll-immediate-check="false">
     <div class="player-detail" v-if="playerDetail !== null">
       <div class="player-detail-header">
         <div class="player-detail-header-icon">
@@ -59,6 +62,7 @@
               <img src="http://o9xap42x4.bkt.clouddn.com/arrow_blue.png" alt="">
             </div>
           </router-link>
+          <p v-if="busy" class="load-more">加载中....</p>
         </ul>
         <div v-else class="player-detail-combats-none">
           <p>暂无战绩</p>
@@ -85,11 +89,19 @@ export default {
     return {
       TGPICON: TGPICON,
       p: 0,
-      pics: pics
+      pics: pics,
+      busy: false
+    }
+  },
+  watch: {
+    combatList () {
+      setTimeout(()=> {
+        this.busy = false
+      },2500)
     }
   },
   computed: {
-    ...mapState(['playerDetail', 'tierQueue', 'tripleKills', 'quadraKills', 'pentaKills', 'godlikeNum', 'killsTotal', 'totalMvps', 'combatList', 'busy'])
+    ...mapState(['playerDetail', 'tierQueue', 'tripleKills', 'quadraKills', 'pentaKills', 'godlikeNum', 'killsTotal', 'totalMvps', 'combatList'])
   },
   methods: {
     getDetail () {
@@ -108,9 +120,13 @@ export default {
       this.$store.dispatch('GET_COMBAT_LIST', params)
     },
     ...mapMutations([
-      'empty_combat_list',
-      'updateLoading'
-    ])
+      'empty_combat_list'
+    ]),
+    loadMore () {
+      this.busy = true
+      this.p++
+      this.getCombatList()
+    }
   },
   components: {
     Loading
@@ -167,6 +183,7 @@ export default {
   }
   &-combats {
     ul {
+      overflow-y: scroll;
       li {
         display: flex;
         flex-direction: row;
@@ -213,6 +230,10 @@ export default {
             height: 16px;
           }
         }
+      }
+      .load-more {
+        padding: 10px 0;
+        text-align: center;
       }
     }
     &-none {

@@ -11,21 +11,21 @@
       </transition>
     </div>
     <mt-tabbar v-model="selected">
-      <mt-tab-item id="championList" @click.native="go('championList')">
+      <mt-tab-item id="news" @click.native="go('news')">
         <img src="http://o9xap42x4.bkt.clouddn.com/icon1.png" alt="" slot="icon">
-        英雄
+        资讯
       </mt-tab-item>
       <mt-tab-item id="player" @click.native="go('player')">
         <img src="http://o9xap42x4.bkt.clouddn.com/icon2.png" alt="" slot="icon">
         玩家
       </mt-tab-item>
-      <mt-tab-item id="video" @click.native="go('video')">
+      <mt-tab-item id="championList" @click.native="go('championList')">
         <img src="http://o9xap42x4.bkt.clouddn.com/icon3.png" alt="" slot="icon">
-        视频
+        英雄
       </mt-tab-item>
-      <mt-tab-item id="about" @click.native="go('about')">
+      <mt-tab-item id="video" @click.native="go('video')">
         <img src="http://o9xap42x4.bkt.clouddn.com/icon4.png" alt="" slot="icon">
-        关于
+        视频
       </mt-tab-item>
     </mt-tabbar>
   </div>
