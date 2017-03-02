@@ -44,10 +44,8 @@ vuejs League of Legends  project
 
 <img src="http://o9xap42x4.bkt.clouddn.com/landing.png" width="200" height="350"/>
 <img src="http://o9xap42x4.bkt.clouddn.com/news.png" width="200" height="350"/>
-<img src="http://o9xap42x4.bkt.clouddn.com/w1.png" width="200" height="350"/>
 <img src="http://o9xap42x4.bkt.clouddn.com/w2.png" width="200" height="350"/>
 <img src="http://o9xap42x4.bkt.clouddn.com/w3.png" width="200" height="350"/>
-<br>
 <img src="http://o9xap42x4.bkt.clouddn.com/w4.png" width="200" height="350"/>
 <img src="http://o9xap42x4.bkt.clouddn.com/w5.png" width="200" height="350"/>
 <img src="http://o9xap42x4.bkt.clouddn.com/w6.png" width="200" height="350"/>
