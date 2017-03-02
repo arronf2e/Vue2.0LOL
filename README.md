@@ -63,6 +63,7 @@ vuejs League of Legends  project
 - [ ] footerfixed，输入法问题
 - [ ] 视频页加载iframe卡
 - [ ] 丰富视频页内容
+- [ ] 点击返回按钮时tab的正确显示
 
 #### 6. 结语
 
