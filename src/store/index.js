@@ -5,7 +5,7 @@ import axios from 'axios'
 Vue.use(Vuex)
 
 const TOKEN = {
-  "DAIWAN-API-TOKEN": "6745A-A8696-53335-948D9"
+  "DAIWAN-API-TOKEN": "78710-B0810-777C7-C9A85"
 }
 const VIDEOTOKEN = {
   "DAIWAN-API-TOKEN":"C18BC-4CFC9-1C966-CC490"
@@ -140,14 +140,14 @@ const store = new Vuex.Store({
       state.combatList = []
     },
     get_newst_videos(state, object) {
-      state.title = '视频'
-      axios.get('/api/GetNewstVideos?p=' + object.p, {
-        headers: VIDEOTOKEN
-      }).then((res) => {
-        if (res.data.code == 0) {
-            state.newstVideos = state.newstVideos.concat(res.data.data)
-        }
-      })
+      // state.title = '视频'
+      // axios.get('/api/GetNewstVideos?p=' + object.p, {
+      //   headers: VIDEOTOKEN
+      // }).then((res) => {
+      //   if (res.data.code == 0) {
+      //       state.newstVideos = state.newstVideos.concat(res.data.data)
+      //   }
+      // })
     },
     get_newst_news(state) {
       // 有点问题，暂时用本地数据代替
