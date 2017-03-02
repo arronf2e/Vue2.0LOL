@@ -170,3 +170,17 @@ export const pv = function(val) {
     return val
   }
 }
+
+// 正则获取视频iframe的src
+export const videoSrc = function(url) {
+  const newUserReg = /^src=/,
+        store_id   = /src=/g,
+        ticket   = /ticket/,
+        isadminReg = /\?allowfullscreen/g,
+        isRegisterReg = /\?register/g
+  let arr = url.split(store_id)[1]
+            .split(isadminReg)[0]
+            .replace("allowfullscreen></iframe></div>", "")
+            .split(/"/)[1]
+  return arr
+}
