@@ -64,6 +64,7 @@ vuejs League of Legends  project
 - [ ] 视频页加载iframe卡
 - [ ] 丰富视频页内容
 - [ ] 点击返回按钮时tab的正确显示
+- [ ] 英雄详情布局
 
 #### 6. 结语
 
