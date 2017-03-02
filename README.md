@@ -39,6 +39,7 @@ vuejs League of Legends  project
 - [x] 单场比赛对局信息
 - [x] 关于页面
 - [x] 新建新闻页，作为首页
+- [x] 视频页加载iframe卡 (用正则匹配出视频地址)
 
 #### 4. 效果图
 
@@ -61,7 +62,6 @@ vuejs League of Legends  project
 - [ ] 召唤师搜索页内容的丰富
 - [ ] 页面切换时的动画效果
 - [ ] footerfixed，输入法问题
-- [ ] 视频页加载iframe卡 (准备用正则匹配出视频地址)
 - [ ] 丰富视频页内容
 - [ ] 点击返回按钮时tab的正确显示
 - [ ] 英雄详情布局
