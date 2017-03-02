@@ -12,7 +12,7 @@
 export default {
   methods: {
     enter() {
-      this.$router.push('/index/championList')
+      this.$router.push('/index/news')
     }
   }
 }

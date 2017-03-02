@@ -161,3 +161,12 @@ export const getAreaName = function(id) {
     }
   }
 }
+
+// news 阅读量
+export const pv = function(val) {
+  if (val > 10000) {
+    return parseInt(val/10000) + '万'
+  } else {
+    return val
+  }
+}

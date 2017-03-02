@@ -1,10 +1,9 @@
 <template>
   <div>
-    aaa
     <div class="news">
       <div class="news-banners">
         <swiper :options="swiperOption">
-          <swiper-slide v-for="news in bannerNews"><img :src="news.image_url_big" class="banner-item"  alt="" height="20%" width="100%" @click="test"></swiper-slide>
+          <swiper-slide v-for="news in bannerNews"><a :href="news.article_url"><img :src="news.image_url_big" class="banner-item"  alt="" height="20%" width="100%"></a></swiper-slide>
           <div class="swiper-pagination" slot="pagination"></div>
         </swiper>
       </div>
@@ -18,9 +17,9 @@
               <p class="title">{{ news.title }}</p>
               <p class="summary">{{ news.summary }}</p>
               <p class="time">
-                {{ news.publication_date }}
-                <span>
-                  {{ news.pv}}
+                {{ news.publication_date.split(' ')[0] }}
+                <span class="pv">
+                  {{ news.pv | pv }}阅
                 </span>
               </p>
             </div>
@@ -31,12 +30,14 @@
   </div>
 </template>
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapMutations } from 'vuex'
 import Loading from '../components/Loading'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import { newstNews, bannerNews } from '../data'
+import { pv } from '../filters' 
 export default {
   created () {
-    this.getList()
+    this.setTitle()
   },
   data () {
     return {
@@ -45,19 +46,20 @@ export default {
         paginationClickable: true,
         autoplay: 3000
       },
-      p: 1
+      p: 1,
+      newstNews: newstNews,
+      bannerNews,bannerNews
     }
   },
   computed: {
-    ...mapState(['newstNews', 'bannerNews'])
   },
   methods: {
-    getList () {
-      this.$store.dispatch('GET_NEWST_NEWS')
-    },
-    test() {
-      
+    setTitle () {
+      this.$store.commit('set_title', '资讯')
     }
+  },
+  filters: {
+    pv
   },
   components: {
     Loading,
@@ -78,6 +80,7 @@ export default {
         background: #fff;
         display: flex;
         flex-direction: row;
+        padding: 10px 0;
       }
       &-img {
         display: flex;
@@ -89,15 +92,21 @@ export default {
         }
       }
       &-title {
+        padding-left: 5px;
         .title {
           font-size: 14px;
         }
         .summary {
           font-size: 12px;
           color: #999;
+          padding: 2px 0;
         }
         .time {
           font-size: 12px;
+          color: #999;
+          .pv {
+            color: goldenrod;
+          }
         }
       }
     }

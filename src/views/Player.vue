@@ -40,8 +40,9 @@ export default {
       TGPICON: TGPICON
     }
   },
-  mounted () {
+  created () {
     this.empty_player_search()
+    this.setTitle()
   },
   computed: {
     ...mapState(['playerSearchResult'])
@@ -59,6 +60,9 @@ export default {
     ...mapMutations([
       'empty_player_search'
     ]),
+    setTitle () {
+      this.$store.commit('set_title', '搜索召唤师')
+    }
   },
   filters: {
     getAreaName

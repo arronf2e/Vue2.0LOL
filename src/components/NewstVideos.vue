@@ -1,38 +1,41 @@
 <template>
-  <div>
-    x video
-    {{ newstVideos }}
+  <div class="video-list">
+    <v-card :data="video" v-for="video in newstVideos"></v-card>
   </div>
 </template>
 <script>
-import { mapState, mapActions } from 'vuex'
 import Loading from '../components/Loading'
-import vImg from '../components/Lazyimg'
+import vCard from '../components/VideoCard'
+import { newstVideos } from '../data'
 export default {
   created () {
-    this.getList()
+    this.setTitle()
   },
   data () {
     return {
-      p: 1
+      newstVideos: newstVideos
     }
   },
   computed: {
-    ...mapState(['newstVideos'])
   },
   methods: {
-    getList () {
-      this.$store.dispatch('GET_NEWST_VIDEOS', {
-        p: this.p
-      })
+    setTitle () {
+      this.$store.commit('set_title', '最新视频')
     }
   },
   components: {
     Loading,
-    vImg
+    vCard
   }
 }
 </script>
 <style lang="less">
-
+.video-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 10px;
+  background: #f0f0f0;
+}
 </style>

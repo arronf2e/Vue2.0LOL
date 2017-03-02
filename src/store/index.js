@@ -7,6 +7,9 @@ Vue.use(Vuex)
 const TOKEN = {
   "DAIWAN-API-TOKEN": "6745A-A8696-53335-948D9"
 }
+const VIDEOTOKEN = {
+  "DAIWAN-API-TOKEN":"C18BC-4CFC9-1C966-CC490"
+}
 
 const API = {
   championList: 'http://lolapi.games-cube.com/champion',
@@ -44,7 +47,7 @@ const store = new Vuex.Store({
     totalMvps: 0,
     combatList: [],
     combatDetail: null,
-    newstVideos: null,
+    newstVideos: [],
     newstNews: null,
     bannerNews: null
   },
@@ -138,22 +141,23 @@ const store = new Vuex.Store({
     },
     get_newst_videos(state, object) {
       state.title = '视频'
-      // axios.get('/api//GetNewstVideos?p=' + object.p, {
-      //   headers: TOKEN
-      // }).then((res) => {
-      //   if (res.data.code == 0) {
-      //       state.newstVideos = state.newstVideos.concat(res.data.data)
-      //   }
-      // })
+      axios.get('/api/GetNewstVideos?p=' + object.p, {
+        headers: VIDEOTOKEN
+      }).then((res) => {
+        if (res.data.code == 0) {
+            state.newstVideos = state.newstVideos.concat(res.data.data)
+        }
+      })
     },
     get_newst_news(state) {
-      state.title = '最新资讯'
-      axios.get('http://qt.qq.com/php_cgi/news/php/varcache_getnews.php?id=12&page=0&plat=ios&version=33').then((res) => {
-        state.newstNews = res.data.list
-      })
-      axios.get('http://qt.qq.com/static/pages/news/phone/c13_list_1.shtml').then((res) => {
-        state.bannerNews = res.data.list
-      })
+      // 有点问题，暂时用本地数据代替
+      // state.title = '最新资讯'
+      // axios.get('http://qt.qq.com/php_cgi/news/php/varcache_getnews.php?id=12&page=0&plat=ios&version=33').then((res) => {
+      //   state.newstNews = res.data.list
+      // })
+      // axios.get('http://qt.qq.com/static/pages/news/phone/c13_list_1.shtml').then((res) => {
+      //   state.bannerNews = res.data.list
+      // })
     },
     set_title(state, val) {
       state.title = val
