@@ -1,4 +1,4 @@
-###Vue2.0版英雄联盟助手
+### Vue2.0版英雄联盟助手
 
 vuejs League of Legends  project
 
