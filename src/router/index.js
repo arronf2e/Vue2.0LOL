@@ -30,14 +30,7 @@ export default new Router({
         }, {
           path: 'championDetail/:id',
           name: 'championDetail',
-          component: require('../views/championDetail'),
-          beforeEnter: (to, from, next) => {
-            if (from.name == 'championList') {
-              let container = document.getElementById('index-container')
-              container.scrollTop = 0
-            }
-            next()
-          }     
+          component: require('../views/championDetail') 
         },
         {
           path: 'player',
@@ -46,25 +39,11 @@ export default new Router({
         }, {
           path: 'playerDetail/:vaid/:qquin',
           name: 'playerDetail',
-          component: require('../views/playerdetail'),
-          beforeEnter: (to, from, next) => {
-            if (from.name == 'player') {
-              let container = document.getElementById('index-container')
-              container.scrollTop = 0
-            }
-            next()
-          }     
+          component: require('../views/playerdetail')   
         }, {
           path: '/combatDetail/:vaid/:qquin/:gameid',
           name: 'combatDetail',
-          component: require('../views/CombatDetail'),
-          beforeEnter: (to, from, next) => {
-            if (from.name == 'playerDetail') {
-              let container = document.getElementById('index-container')
-              container.scrollTop = 0
-            }
-            next()
-          }   
+          component: require('../views/CombatDetail')
         }, {
           path: 'video',
           name: 'video',

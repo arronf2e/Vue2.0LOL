@@ -22,6 +22,25 @@ import { mapState } from 'vuex'
 export default {
   name: 'index',
   created () {
+    var rname = this.$route.name
+    switch(rname) {
+      case 'news':
+          this.bottomNav = 'news'
+          break
+      case 'player':
+      case 'playerDetail':
+      case 'combatDetail':
+          this.bottomNav = 'player'
+          break
+      case 'championList':
+      case 'championDetail':
+          this.bottomNav = 'championList'
+          break
+      case 'video':
+          this.bottomNav = 'video'
+          break
+      
+    }
   },
   data () {
     return {

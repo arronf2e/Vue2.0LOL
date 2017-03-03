@@ -6,10 +6,6 @@ import router from './router'
 import store from './store'
 import MuseUI from 'muse-ui'
 import 'muse-ui/dist/muse-ui.css'
-
-import MintUI from 'mint-ui'
-import 'mint-ui/lib/style.css'
-
 import Icon from 'vue-svg-icon/Icon.vue'
 import VueLazyload from 'vue-lazyload'
 Vue.component('icon', Icon);  
@@ -23,8 +19,15 @@ Vue.use(VueLazyload, {
   attempt: 1
 })
 
-Vue.use(MintUI)
-
+router.afterEach((to,from) => {
+  if (from.path == '/') {
+    return
+  }
+  if (from.path.split('/')[1] == 'index') {
+    let container = document.getElementById('index-container')
+    container.scrollTop = 0
+  }
+}) 
 
 /* eslint-disable no-new */
 new Vue({
