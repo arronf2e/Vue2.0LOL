@@ -1,7 +1,18 @@
 <template>
   <div class="index">
-    <mu-appbar :title="title">
-    </mu-appbar>
+    <div class="index-title">
+      <mu-flexbox>
+        <mu-flexbox-item class="back-flex" grow="1">
+          <mu-icon-button icon="arrow_back" @click="goback"/>
+        </mu-flexbox-item>
+        <mu-flexbox-item class="title-flex" grow="5">
+          {{ title }}
+        </mu-flexbox-item>
+        <mu-flexbox-item class=""  grow="1">
+          
+        </mu-flexbox-item>
+      </mu-flexbox>
+    </div>
     <div class="index-container" id="index-container">
       <transition name="">
         <router-view></router-view>
@@ -72,6 +83,20 @@ export default {
     top: 45px;
     bottom: 56px;
     overflow-y: scroll;
+  }
+  &-title {
+    .mu-flexbox {
+      background: #03a9f4;
+      height: 45px;
+      .title-flex {
+        text-align: center;
+        color: #fff;
+        font-size: 18px;
+      }
+      .back-flex {
+        color: #fff;
+      }
+    }
   }
   .mu-appbar {
     height: 45px;
