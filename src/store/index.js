@@ -50,6 +50,7 @@ const store = new Vuex.Store({
     newstVideos: [],
     newstNews: null,
     bannerNews: null
+    // showKeybord: false
   },
   mutations: {
     get_champion_list(state) {
@@ -162,6 +163,9 @@ const store = new Vuex.Store({
     set_title(state, val) {
       state.title = val
     }
+    // update_show_keybord(state) {
+    //   state.showKeybord = !state.showKeybord
+    // }
   },
   actions: {
     GET_CHAMPION_LIST (context) {

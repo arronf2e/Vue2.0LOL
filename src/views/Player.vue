@@ -1,7 +1,7 @@
 <template>
   <div class="player">
     <div class="player-search">
-      <input type="text" placeholder="搜索召唤师" v-model="name" />
+      <input type="text" placeholder="搜索召唤师" v-model="name"/>
       <button @click="playerSearch">搜索</button>
     </div>
     <div class="player-result">

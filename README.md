@@ -55,7 +55,7 @@ vuejs League of Legends  project
 
 #### 5. 待完成与优化
 
-- [ ] UI优化
+- [ ] UI优化 (muse-ui)
 - [ ] 移动端布局的优化
 - [ ] 单场比赛信息的完善
 - [ ] 完善API文档
