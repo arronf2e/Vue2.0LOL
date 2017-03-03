@@ -3,7 +3,7 @@
     <div class="landing-page-content">
       <p class="landing-page-content_tip">Vue2.0-英雄联盟助手</p>
       <p class="landing-page-content_enter">
-        <mt-button type="danger" size="normal" @click="enter">进入</mt-button>
+        <mu-raised-button label="Welcome" class="demo-raised-button" @click="enter" primary/>
       </p>
     </div>
   </div>

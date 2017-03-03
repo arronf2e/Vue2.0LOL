@@ -1,6 +1,6 @@
 <template>
   <div class="loading">
-    <mt-spinner type="fading-circle"></mt-spinner>
+    <mu-circular-progress :size="40"/>
   </div>
 </template>
 <script>

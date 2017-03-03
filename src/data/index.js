@@ -988,7 +988,7 @@ export const newstVideos = [
 	{
 		"guid": "20170301948",
 		"vid": "b0379xdk25h",
-		"title": "李青专场：天下武功唯快不破，快到双眼捕捉不到！",
+		"title": "李青专场：天下武功唯快不破快到双眼捕捉不到",
 		"bigimg": "",
 		"img": "http://shp.qpic.cn/lolwebvideo/201406/4a2e5f8585095529ea525bc1e64d9b57/0",
 		"url": "",

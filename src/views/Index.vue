@@ -1,55 +1,40 @@
 <template>
   <div class="index">
-    <mt-header fixed :title="title">
-      <router-link to="" slot="left">
-        <mt-button  @click="goback">返回</mt-button>
-      </router-link>
-    </mt-header>
+    <mu-appbar :title="title">
+    </mu-appbar>
     <div class="index-container" id="index-container">
       <transition name="">
         <router-view></router-view>
       </transition>
     </div>
-    <mt-tabbar v-model="selected">
-      <mt-tab-item id="news" @click.native="go('news')">
-        <img src="http://o9xap42x4.bkt.clouddn.com/icon1.png" alt="" slot="icon">
-        资讯
-      </mt-tab-item>
-      <mt-tab-item id="player" @click.native="go('player')">
-        <img src="http://o9xap42x4.bkt.clouddn.com/icon2.png" alt="" slot="icon">
-        玩家
-      </mt-tab-item>
-      <mt-tab-item id="championList" @click.native="go('championList')">
-        <img src="http://o9xap42x4.bkt.clouddn.com/icon3.png" alt="" slot="icon">
-        英雄
-      </mt-tab-item>
-      <mt-tab-item id="video" @click.native="go('video')">
-        <img src="http://o9xap42x4.bkt.clouddn.com/icon4.png" alt="" slot="icon">
-        视频
-      </mt-tab-item>
-    </mt-tabbar>
+    <mu-paper>
+      <mu-bottom-nav :value="bottomNav" @change="handleChange">
+        <mu-bottom-nav-item value="news" title="资讯" icon="fiber_new"/>
+        <mu-bottom-nav-item value="player" title="玩家" icon="person"/>
+        <mu-bottom-nav-item value="championList" title="英雄" icon="pets"/>
+        <mu-bottom-nav-item value="video" title="视频" icon="ondemand_video"/>
+      </mu-bottom-nav>
+    </mu-paper>
   </div>
 </template>
 <script>
 import { mapState } from 'vuex'
 export default {
   name: 'index',
-  // 监测路由信息，防止页面刷新时tab高亮显示的错误
   created () {
-    var route = this.$route.name
-    this.selected = route
   },
   data () {
     return {
-      selected: 'champion'
+      bottomNav: 'news'
     }
   },
   computed: mapState({
     title: state => state.title
   }),
   methods: {
-    go (routeName) {
-      this.$router.push({name: routeName})
+    handleChange (val) {
+      this.bottomNav = val
+      this.$router.push({name: val})
     },
     goback () {
       this.$router.go('-1')
@@ -57,14 +42,32 @@ export default {
   }
 }
 </script>
-<style lang="less" scoped>
+<style lang="less">
 .index {
+  a {
+    color: #333 !important;
+  }
   &-container {
     width: 100%;
     position: absolute;
-    top: 40px;
-    bottom: 55px;
+    top: 45px;
+    bottom: 56px;
     overflow-y: scroll;
+  }
+  .mu-appbar {
+    height: 45px;
+    .mu-appbar-title {
+      text-align: center;
+      span {
+        font-size: 18px;
+      }
+    }
+  }
+  .mu-paper {
+    position: fixed;
+    bottom: 0;
+    left:0;
+    width: 100%;
   }
 }
 

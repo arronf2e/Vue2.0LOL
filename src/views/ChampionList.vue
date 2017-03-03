@@ -3,7 +3,8 @@
     <div class="champion-list" v-if="championList.length > 0">
       <div class="champion-list-item" v-for="champion in championList" @click="goDetail(champion.id)">
         <div class="champion-list-item_avatar">
-          <v-img :imgUrl="pic + champion.id + '.png'"></v-img>
+          <mu-avatar slot="left" :src="pic + champion.id + '.png'" :size="55"/>
+          <!--<v-img :imgUrl="pic + champion.id + '.png'"></v-img>-->
         </div>
         <div class="champion-list-item_info">
           <p class="title">

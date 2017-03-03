@@ -40,6 +40,8 @@ vuejs League of Legends  project
 - [x] 关于页面
 - [x] 新建新闻页，作为首页
 - [x] 视频页加载iframe卡 (用正则匹配出视频地址)
+- [x] UI优化 (替换成muse-ui)
+- [x] 英雄详情布局
 
 #### 4. 效果图
 
@@ -55,8 +57,6 @@ vuejs League of Legends  project
 
 #### 5. 待完成与优化
 
-- [ ] UI优化 (muse-ui)
-- [ ] 移动端布局的优化
 - [ ] 单场比赛信息的完善
 - [ ] 完善API文档
 - [ ] 召唤师搜索页内容的丰富
@@ -64,7 +64,6 @@ vuejs League of Legends  project
 - [ ] footerfixed，输入法问题
 - [ ] 丰富视频页内容
 - [ ] 点击返回按钮时tab的正确显示
-- [ ] 英雄详情布局
 
 #### 6. 结语
 

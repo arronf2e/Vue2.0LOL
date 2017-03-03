@@ -2,7 +2,7 @@
   <div class="player">
     <div class="player-search">
       <input type="text" placeholder="搜索召唤师" v-model="name"/>
-      <button @click="playerSearch">搜索</button>
+      <mu-raised-button label="搜索" class="demo-raised-button" primary @click="playerSearch"/>
     </div>
     <div class="player-result">
       <div class="player-result-empty" v-if="playerSearchResult.length == 0">
@@ -72,9 +72,9 @@ export default {
 <style lang="less" scoped>
 .player {
   &-search {
-    border: 5px solid #26a2ff;
+    border: 5px solid #03a9f4;
     // border-radius: 4px;
-    height: 35px;
+    height: 45px;
     display: flex;
     flex-direction: row;
     input {
@@ -86,9 +86,8 @@ export default {
     button {
       height: 100%;
       flex: 1;
-      border: none;
-      background: navajowhite;
       color: #fff;
+      background: #03a9f4;
     }
   }
   &-result {

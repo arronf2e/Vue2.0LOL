@@ -2,7 +2,7 @@
   <div class="video-card">
     <a :href="data.content | videoSrc">
       <div class="video-card-img">
-        <img :src="data.img" alt="">
+        <img :src="data.img"></img>
       </div>
       <p class="video-card-title">
         {{ data.title }}

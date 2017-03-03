@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "axios": "^0.15.3",
-    "mint-ui": "^2.1.1",
+    "muse-ui": "^2.0.0-rc.5",
     "vue": "^2.1.10",
     "vue-awesome-swiper": "^2.3.2",
     "vue-lazyload": "^1.0.0-rc10",

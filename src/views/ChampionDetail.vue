@@ -19,25 +19,27 @@
         </div>
 
       </div>
-      <mt-navbar v-model="selected">
-        <mt-tab-item id="1">技能说明</mt-tab-item>
-        <mt-tab-item id="2">皮肤欣赏</mt-tab-item>
-      </mt-navbar>
+      <mu-tabs :value="selected" @change="handleTabChange">
+        <mu-tab value="1" title="技能说明"/>
+        <mu-tab value="2" title="皮肤欣赏"/>
+      </mu-tabs>
       <div class="champion-detail-tabinfo">
         <div class="skills" v-if="selected == 1">
           <p class="title"><icon name="lol" :scale="2"></icon><span>技能介绍</span></p>
           <div class="skills-list">
-            <div class="skills-list-item" v-for="skill in skills">
-              <div class="skills-list-item_img">
-                <img :src="skill.imgurl" alt="">
-              </div>
-              <div class="skills-list-item_des">
+            <mu-flexbox class="mt8" orient="horizontal" v-for="skill in skills">
+              <mu-flexbox-item order="0" class="flex-demo" grow=1>
+                <div class="skills-list-item_img">
+                  <img :src="skill.imgurl" alt="">
+                </div>
+              </mu-flexbox-item>
+              <mu-flexbox-item order="2" class="flex-demo" grow=4>
                 <p class="cname">{{ skill.name }}</p>
                 <div v-html="skill.description" class="description">
                   
                 </div>
-              </div>
-            </div>
+              </mu-flexbox-item>
+            </mu-flexbox>
           </div>
           <p class="title"><icon name="lol" :scale="2"></icon><span>技能加点推荐</span></p>
           <p class="add-skill" v-for="(key,val) in addSkill">
@@ -106,6 +108,9 @@ export default {
       this.$store.dispatch('GET_CHAMPION_DETAIL', {
         id: this.$route.params.id
       })
+    },
+    handleTabChange (val) {
+      this.selected = val
     }
   },
   components: {
@@ -160,27 +165,9 @@ export default {
         }
       }
       &-list {
-        &-item {
-          display: flex;
-          display: -webkit-flex;
-          flex-direction: row;
-          -webkit-flex-direction: row;
+        .mu-flexbox {
+          align-items: flex-start !important;
           margin-bottom: 5px;
-          border-bottom: 1px solid #f0f0f0;
-          &_img {
-          }
-          &_des {
-            padding-left: 5px;
-            .description {
-              overflow-wrap: normal;
-              br {
-                display: block;
-                margin-top: 8px;
-                vertical-align: top;
-                line-height: 24px;
-              }
-            }
-          }
         }
       }
     }
