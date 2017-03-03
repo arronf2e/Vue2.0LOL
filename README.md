@@ -10,7 +10,7 @@ vuejs League of Legends  project
 
 #### 1. 技术栈
 
-由 [vue-cli](https://github.com/vuejs/vue-cli) + [muse-ui](https://github.com/museui/muse-ui) 构建，使用 [axios](https://github.com/mzabriskie/axios) 进行数据的请求，使用 [vuex](https://github.com/vuejs/vuex) 进行状态管理，图片懒加载: [vue-lazyload](https://github.com/hilongjw/vue-lazyload)，轮播组件：[vue-awesome-swiper](https://github.com/surmon-china/vue-awesome-swiper)。
+由 [vue-cli](https://github.com/vuejs/vue-cli) + [muse-ui](https://github.com/museui/muse-ui) 构建，使用 [axios](https://github.com/mzabriskie/axios) 进行数据的请求，使用 [vuex](https://github.com/vuejs/vuex) 进行状态管理，图片懒加载: [vue-lazyload](https://github.com/hilongjw/vue-lazyload)，轮播组件：[vue-awesome-swiper](https://github.com/surmon-china/vue-awesome-swiper)，上拉加载: [vue-infinite-scroll](https://github.com/ElemeFE/vue-infinite-scroll)。
 
 
 #### 2.Build Setup
@@ -42,6 +42,7 @@ vuejs League of Legends  project
 - [x] 视频页加载iframe卡 (用正则匹配出视频地址)
 - [x] UI优化 (替换成muse-ui)
 - [x] 英雄详情布局
+- [x] 点击返回按钮时tab的正确显示
 
 #### 4. 效果图
 
@@ -63,7 +64,6 @@ vuejs League of Legends  project
 - [ ] 页面切换时的动画效果
 - [ ] footerfixed，输入法问题
 - [ ] 丰富视频页内容
-- [ ] 点击返回按钮时tab的正确显示
 
 #### 6. 结语
 
