@@ -9,7 +9,6 @@
           {{ title }}
         </mu-flexbox-item>
         <mu-flexbox-item class=""  grow="1">
-          
         </mu-flexbox-item>
       </mu-flexbox>
     </div>
@@ -113,12 +112,5 @@ export default {
     left:0;
     width: 100%;
   }
-}
-
-.bounce-enter-active, .bounce-leave-active {
-  animation: slideInRight 0.1s;
-}
-.bounce-enter, .bouncede-leave-to /* .fade-leave-active in <2.1.8 */ {
-  animation: slideOutLeft 0.1s;
 }
 </style>
