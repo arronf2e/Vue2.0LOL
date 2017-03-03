@@ -10,7 +10,7 @@ vuejs League of Legends  project
 
 #### 1. 技术栈
 
-由 [vue-cli](https://github.com/vuejs/vue-cli) + [mint-ui](https://github.com/ElemeFE/mint-ui) 构建，使用 [axios](https://github.com/mzabriskie/axios) 进行数据的请求，使用 [vuex](https://github.com/vuejs/vuex) 进行状态管理，图片懒加载: [vue-lazyload](https://github.com/hilongjw/vue-lazyload)，轮播组件：[vue-awesome-swiper](https://github.com/surmon-china/vue-awesome-swiper)。
+由 [vue-cli](https://github.com/vuejs/vue-cli) + [muse-ui](https://github.com/museui/muse-ui) 构建，使用 [axios](https://github.com/mzabriskie/axios) 进行数据的请求，使用 [vuex](https://github.com/vuejs/vuex) 进行状态管理，图片懒加载: [vue-lazyload](https://github.com/hilongjw/vue-lazyload)，轮播组件：[vue-awesome-swiper](https://github.com/surmon-china/vue-awesome-swiper)。
 
 
 #### 2.Build Setup
