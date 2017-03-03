@@ -1,8 +1,8 @@
 <template>
   <div v-infinite-scroll="loadMore"
-          infinite-scroll-disabled="busy"
-          infinite-scroll-distance="5"
-          infinite-scroll-immediate-check="false">
+      infinite-scroll-disabled="busy"
+      infinite-scroll-distance="5"
+      infinite-scroll-immediate-check="false">
     <div class="player-detail" v-if="playerDetail !== null">
       <div class="player-detail-header">
         <div class="player-detail-header-icon">
