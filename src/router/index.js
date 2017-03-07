@@ -41,7 +41,7 @@ export default new Router({
           name: 'playerDetail',
           component: require('../views/playerdetail')   
         }, {
-          path: '/combatDetail/:vaid/:qquin/:gameid',
+          path: 'combatDetail/:vaid/:qquin/:gameid',
           name: 'combatDetail',
           component: require('../views/CombatDetail')
         }, {

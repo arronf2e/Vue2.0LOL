@@ -65,6 +65,7 @@ vuejs League of Legends  project
 - [ ] footerfixed，输入法问题
 - [ ] 丰富视频页内容
 - [ ] 视频页播放时候是否考虑直接在当前页面弹出层播放，方便关闭
+- [ ] 周免
 
 #### 6. 结语
 

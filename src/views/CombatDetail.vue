@@ -27,7 +27,9 @@
           <div class="combat-detail-players-win-list">
             <div class="item" v-for="winner in winners">
               <div class="champion-icon">
-                <img :src="pics + winner.champion_id + '.png'" alt="">
+                <router-link :to="{name: 'championDetail', params: {id: winner.champion_id}}">
+                  <img :src="pics + winner.champion_id + '.png'" alt="">
+                </router-link>
                 <p>
                   Lv{{ winner.level }}
                 </p>
