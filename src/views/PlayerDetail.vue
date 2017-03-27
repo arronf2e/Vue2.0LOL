@@ -109,7 +109,8 @@ export default {
         qquin: this.$route.params['qquin'],
         vaid: this.$route.params['vaid']
       }
-      this.$store.dispatch('GET_PLAYER_DETAIL', params)
+      this.$store.dispatch('GET_PLAYER_FIGHT_DETAIL', params)
+      this.$store.dispatch('GET_PLAYER_BASE_DETAIL', params)
     },
     getCombatList () {
       let params = {

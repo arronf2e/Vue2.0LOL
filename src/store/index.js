@@ -53,89 +53,41 @@ const store = new Vuex.Store({
     // showKeybord: false
   },
   mutations: {
-    get_champion_list(state) {
-      axios.get(API.championList, {
-        headers: TOKEN
-      }).then((res) => {
-        if (res.data.code == 0) {
-          state.championList = res.data.data
-          state.title = '英雄列表'
-        }
-      })
+    get_champion_list(state, data) {
+      state.championList = data
+      state.title = '英雄列表'
     },
-    get_champion_detail(state, object) {
-      axios.get(API.championDetail + object.id, {
-        headers: TOKEN
-      }).then((res) => {
-        if (res.data.code == 0) {
-          state.champion = res.data.data[0]
-          state.title = state.champion.name
-        }
-      })
+    get_champion_detail(state, data) {
+      state.champion = data
+      state.title = state.champion.name
     },
-    get_player_search(state, object) {
-      axios.get(API.playerSearch + object.name, {
-        headers: TOKEN
-      }).then((res) => {
-        if (res.data.code == 0) {
-          state.playerSearchResult = res.data.data
-          state.title = '搜索召唤师'
-        }
-      })
+    get_player_search(state, data) {
+      state.playerSearchResult = data
+      state.title = '搜索召唤师'
     },
-    get_player_detail(state, object) {
-      let qquin = object.qquin
-      let vaid = object.vaid
-      axios.get(API.playerDetail + qquin + '&vaid=' + vaid, {
-        headers: TOKEN
-      }).then((res) => {
-        if (res.data.code == 0) {
-          state.playerDetail = res.data.data[0]
-          state.title = state.playerDetail.name
-          axios.get(API.getTierQueue + res.data.data[0].tier + '&queue=' + res.data.data[0].queue, {
-            headers: TOKEN
-          }).then((res) => {
-            if (res.data.code == 0) {
-              state.tierQueue = res.data.data[0].return
-            }
-          })
-        }
-      })
-      axios.get(API.playExtInfo + qquin + '&vaid=' + vaid, {
-        headers: TOKEN
-      }).then((res) => {
-        if (res.data.code == 0) {
-          let data = res.data.data
-          state.tripleKills = data[1].triple_kills
-          state.quadraKills = data[1].quadra_kills
-          state.pentaKills = data[1].penta_kills
-          state.godlikeNum = data[1].god_like_num
-          state.killsTotal = data[1].kills_total
-          state.totalMvps = data[2].total_match_mvps + data[2].total_rank_mvps
-        }
-      })
+    get_player_fight_detail(state, data) {
+      state.tripleKills = data[1].triple_kills
+      state.quadraKills = data[1].quadra_kills
+      state.pentaKills = data[1].penta_kills
+      state.godlikeNum = data[1].god_like_num
+      state.killsTotal = data[1].kills_total
+      state.totalMvps = data[2].total_match_mvps + data[2].total_rank_mvps
+    }
+    ,
+    empty_player_base_search(state,data1, data2) {
+      state.playerDetail = data1
+      state.title = state.playerDetail.name
+      state.tierQueue = data2
     },
     empty_player_search(state) {
       state.playerSearchResult = []
     },
-    get_combat_list(state, object) {
-      axios.get(API.combatList + object.qquin + '&vaid=' + object.vaid + '&p=' + object.p, {
-        headers: TOKEN
-      }).then((res) => {
-        if (res.data.code == 0) {
-            state.combatList = state.combatList.concat(res.data.data[0].battle_list)
-        }
-      })
+    get_combat_list(state, data) {
+      state.combatList = state.combatList.concat(data)
     },
-    get_combat_detail(state, object) {
-      axios.get(API.combatDetail + object.qquin + '&vaid=' + object.vaid + '&gameid=' + object.gameid, {
-        headers: TOKEN
-      }).then((res) => {
-        if (res.data.code == 0) {
-            state.combatDetail = res.data.data[0].battle
-            state.title = '对战详情'
-        }
-      })
+    get_combat_detail(state, data) {
+      state.combatDetail = data
+      state.title = '对战详情'
     },
     empty_combat_list(state) {
       state.combatList = []
@@ -169,22 +121,79 @@ const store = new Vuex.Store({
   },
   actions: {
     GET_CHAMPION_LIST (context) {
-      context.commit('get_champion_list')
+      axios.get(API.championList, {
+        headers: TOKEN
+      }).then((res) => {
+        if (res.data.code == 0) {
+          context.commit('get_champion_list', res.data.data)
+        }
+      })
     },
     GET_CHAMPION_DETAIL(context, object) {
-      context.commit('get_champion_detail', object)
+      axios.get(API.championDetail + object.id, {
+        headers: TOKEN
+      }).then((res) => {
+        if (res.data.code == 0) {
+          context.commit('get_champion_detail', res.data.data[0])
+        }
+      })
     },
     GET_PLAYER_SEARCH(context, object) {
-      context.commit('get_player_search', object)
+      axios.get(API.playerSearch + object.name, {
+        headers: TOKEN
+      }).then((res) => {
+        if (res.data.code == 0) {
+          context.commit('get_player_search', res.data.data)
+        }
+      })
     },
-    GET_PLAYER_DETAIL(context, object) {
-      context.commit('get_player_detail', object)
+    GET_PLAYER_FIGHT_DETAIL(context, object) {
+      let qquin = object.qquin
+      let vaid = object.vaid
+      axios.get(API.playExtInfo + qquin + '&vaid=' + vaid, {
+        headers: TOKEN
+      }).then((res) => {
+        if (res.data.code == 0) {
+          context.commit('get_player_fight_detail', res.data.data)
+        }
+      })
+    },
+    GET_PLAYER_BASE_DETAIL(context, object) {
+      let qquin = object.qquin
+      let vaid = object.vaid
+      axios.get(API.playerDetail + qquin + '&vaid=' + vaid, {
+        headers: TOKEN
+      }).then((res) => {
+        if (res.data.code == 0) {
+          var data1 = res.data.data[0]
+          axios.get(API.getTierQueue + res.data.data[0].tier + '&queue=' + res.data.data[0].queue, {
+            headers: TOKEN
+          }).then((res) => {
+            if (res.data.code == 0) {
+              var data2 = res.data.data[0].return
+              context.commit('get_player_base_detail', data1, data2)
+            }
+          })
+        }
+      })
     },
     GET_COMBAT_LIST(context, object) {
-      context.commit('get_combat_list', object)
+      axios.get(API.combatList + object.qquin + '&vaid=' + object.vaid + '&p=' + object.p, {
+        headers: TOKEN
+      }).then((res) => {
+        if (res.data.code == 0) {
+          context.commit('get_combat_list', res.data.data[0].battle_list)
+        }
+      })
     },
     GET_COMBAT_DETAIL(context, object) {
-      context.commit('get_combat_detail', object)
+      axios.get(API.combatDetail + object.qquin + '&vaid=' + object.vaid + '&gameid=' + object.gameid, {
+        headers: TOKEN
+      }).then((res) => {
+        if (res.data.code == 0) {
+          context.commit('get_combat_detail', res.data.data[0].battle)
+        }
+      })
     },
     GET_NEWST_VIDEOS(context, object) {
       context.commit('get_newst_videos', object)
