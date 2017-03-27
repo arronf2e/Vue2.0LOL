@@ -74,7 +74,7 @@ const store = new Vuex.Store({
       state.totalMvps = data[2].total_match_mvps + data[2].total_rank_mvps
     }
     ,
-    empty_player_base_search(state,data1, data2) {
+    get_player_base_detail(state,data1, data2) {
       state.playerDetail = data1
       state.title = state.playerDetail.name
       state.tierQueue = data2
