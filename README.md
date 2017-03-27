@@ -2,10 +2,15 @@
 
 vuejs League of Legends  project
 
-[项目源码](https://github.com/arronf2e/Vue2.0LOL)  
+[项目源码](https://github.com/arronf2e/Vue2.0LOL)
 [在线地址](http://omeme.me/demos/lol/)
 <p><img src="http://o9xap42x4.bkt.clouddn.com/lol.png" width="200" height="200"/></p>
 <p>微信扫一扫，查看在线DEMO</p>
+
+Version: 2.0 更新内容：
+
+  重写了vuex部分
+
 
 
 #### 1. 技术栈
@@ -15,19 +20,19 @@ vuejs League of Legends  project
 
 #### 2.Build Setup
 
-	
+
 	# install dependencies
 	npm install
 
 	# serve with hot reload at localhost:8888
 	npm run dev
-	
+
 	# build for production with minification
 	npm run build
 
 	# build for production and view the bundle analyzer report
 	npm run build --report
-	
+
 #### 3. 已经完成的模块
 
 - [x] Landing page
@@ -61,7 +66,6 @@ vuejs League of Legends  project
 - [ ] 单场比赛信息的完善
 - [ ] 完善API文档
 - [ ] 召唤师搜索页内容的丰富
-- [ ] 页面切换时的动画效果
 - [ ] footerfixed，输入法问题
 - [ ] 丰富视频页内容
 - [ ] 视频页播放时候是否考虑直接在当前页面弹出层播放，方便关闭
@@ -75,4 +79,3 @@ vuejs League of Legends  project
 在github上看了那么多的vue项目，自己的看过其中的部分，当然肯定也仿过，可是一直没坚持下去。本项目是自己第一个完整的开源小项目，然后会有很多的不足，也是自己第一次使用vuex，希望大家可以多提意见，我也会一直更新这个项目，喜欢的朋友可以star一下。最后感谢[带玩游戏平台](http://www.games-cube.com/)提供的API！
 
 
-	

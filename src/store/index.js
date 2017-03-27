@@ -8,11 +8,12 @@ const TOKEN = {
   "DAIWAN-API-TOKEN": "78710-B0810-777C7-C9A85"
 }
 const VIDEOTOKEN = {
-  "DAIWAN-API-TOKEN":"C18BC-4CFC9-1C966-CC490"
+  "DAIWAN-API-TOKEN":"DBE94-B3FD2-F2DB5-C72BC"
 }
 
 const API = {
   championList: 'http://lolapi.games-cube.com/champion',
+  championFree: 'http://lolapi.games-cube.com/Free',
   championDetail: 'http://lolapi.games-cube.com/GetChampionDetail?champion_id=',
   playerSearch: 'http://lolapi.games-cube.com/UserArea?keyword=',
   playerDetail: 'http://lolapi.games-cube.com/UserHotInfo?qquin=',
@@ -21,7 +22,8 @@ const API = {
   combatList: 'http://lolapi.games-cube.com/CombatList?qquin=',
   combatDetail: 'http://lolapi.games-cube.com/GameDetail?qquin=',
   newstVideos: 'http://infoapi.games-cube.com/GetNewstVideos?p=',
-  commenterList: 'http://infoapi.games-cube.com/GetAuthors'
+  commenterList: 'http://infoapi.games-cube.com/GetAuthors',
+  newstVideos: 'http://infoapi.games-cube.com/GetNewstVideos?p='
 }
 // playerDetail: http://lolapi.games-cube.com/UserHotInfo?qquin={qquin}&vaid={vaid}
 // 段位  http://lolapi.games-cube.com/GetTierQueue?tier={tier}&queue={queue}
@@ -34,6 +36,7 @@ const store = new Vuex.Store({
   state: {
     title: '英雄联盟助手',
     championList: [],
+    championFree: [],
     champion: null,
     championDetailBg: '',
     playerSearchResult: [],
@@ -55,7 +58,19 @@ const store = new Vuex.Store({
   mutations: {
     get_champion_list(state, data) {
       state.championList = data
-      state.title = '英雄列表'
+      state.title = '全部英雄'
+    },
+    get_champion_free(state, data) {
+      state.championFree = []
+      for(let key in data) {
+        state.championFree.push({
+          id: data[key].key,
+          title: data[key].name,
+          cname: data[key].title,
+          ename: key
+        })
+      }
+      state.title = '周免英雄'
     },
     get_champion_detail(state, data) {
       state.champion = data
@@ -92,15 +107,9 @@ const store = new Vuex.Store({
     empty_combat_list(state) {
       state.combatList = []
     },
-    get_newst_videos(state, object) {
-      // state.title = '视频'
-      // axios.get('/api/GetNewstVideos?p=' + object.p, {
-      //   headers: VIDEOTOKEN
-      // }).then((res) => {
-      //   if (res.data.code == 0) {
-      //       state.newstVideos = state.newstVideos.concat(res.data.data)
-      //   }
-      // })
+    get_newst_videos(state, data) {
+      state.title = '视频'
+      state.newstVideos = state.newstVideos.concat(data)
     },
     get_newst_news(state) {
       // 有点问题，暂时用本地数据代替
@@ -126,6 +135,15 @@ const store = new Vuex.Store({
       }).then((res) => {
         if (res.data.code == 0) {
           context.commit('get_champion_list', res.data.data)
+        }
+      })
+    },
+    GET_CHAMPION_FREE (context) {
+      axios.get(API.championFree, {
+        headers: TOKEN
+      }).then((res) => {
+        if (res.data.code == 0) {
+          context.commit('get_champion_free', res.data.data[0])
         }
       })
     },
@@ -196,7 +214,13 @@ const store = new Vuex.Store({
       })
     },
     GET_NEWST_VIDEOS(context, object) {
-      context.commit('get_newst_videos', object)
+      axios.get(API.newstVideos + object.p, {
+        headers: VIDEOTOKEN
+      }).then((res) => {
+        if (res.data.code == 0) {
+          context.commit('get_newst_videos', res.data.data)
+        }
+      })
     },
     GET_NEWST_NEWS(context) {
       context.commit('get_newst_news')
@@ -205,6 +229,9 @@ const store = new Vuex.Store({
   getters: {
     skins (state) {
       var skins = []
+      if(!state.champion) {
+        return null
+      }
       for(var i = 0; i < state.champion.skins.length; i++) {
         let obj = {
           name: state.champion.skins[i].name,
@@ -216,6 +243,9 @@ const store = new Vuex.Store({
       return skins
     },
     skills (state) {
+      if(!state.champion) {
+        return null
+      }
       var skills = [{
         name: state.champion.passive.name,
         description: state.champion.passive.description,
@@ -232,9 +262,15 @@ const store = new Vuex.Store({
       return skills
     },
     winners (state) {
+      if(!state.combatDetail) {
+        return null
+      }
       return state.combatDetail.gamer_records.slice(0,5)
     },
     losers (state) {
+      if(!state.combatDetail) {
+        return null
+      }
       return state.combatDetail.gamer_records.slice(-5)
     }
   }
