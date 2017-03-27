@@ -10,7 +10,7 @@ vuejs League of Legends  project
 Version: 2.0 更新内容：
 
   重写了vuex部分
-
+  添加了周免英雄
 
 
 #### 1. 技术栈
