@@ -9,7 +9,7 @@
 import NewstVideos from '../components/NewstVideos'
 export default {
   created () {
-    this.init()
+//    this.init()
   },
   data () {
     return {
