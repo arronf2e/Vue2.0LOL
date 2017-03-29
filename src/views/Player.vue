@@ -25,6 +25,10 @@
         </div>
       </div>
     </div>
+    <mu-dialog :open="dialog" title="注意">
+      要输入正确的召唤师名字哦
+      <mu-flat-button label="确定" slot="actions" primary @click="close"/>
+    </mu-dialog>
   </div>
 </template>
 <script>
@@ -37,7 +41,8 @@ export default {
   data () {
     return {
       name: '',
-      TGPICON: TGPICON
+      TGPICON: TGPICON,
+      dialog: false
     }
   },
   created () {
@@ -50,7 +55,7 @@ export default {
   methods: {
     playerSearch () {
       if (this.name == '') {
-        this.$toast('请输入正常的召唤师名字哦')
+        this.open()
         return
       }
       this.$store.dispatch('GET_PLAYER_SEARCH', {
@@ -62,6 +67,12 @@ export default {
     ]),
     setTitle () {
       this.$store.commit('set_title', '搜索召唤师')
+    },
+    open () {
+      this.dialog = true
+    },
+    close () {
+      this.dialog = false
     }
   },
   filters: {

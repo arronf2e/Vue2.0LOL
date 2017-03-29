@@ -8,22 +8,22 @@ const TOKEN = {
   "DAIWAN-API-TOKEN": "78710-B0810-777C7-C9A85"
 }
 const VIDEOTOKEN = {
-  "DAIWAN-API-TOKEN":"DBE94-B3FD2-F2DB5-C72BC"
+  "DAIWAN-API-TOKEN":"B04B8-B5128-ACAB9-52C58"
 }
 
 const API = {
-  championList: 'http://lolapi.games-cube.com/champion',
-  championFree: 'http://lolapi.games-cube.com/Free',
-  championDetail: 'http://lolapi.games-cube.com/GetChampionDetail?champion_id=',
-  playerSearch: 'http://lolapi.games-cube.com/UserArea?keyword=',
-  playerDetail: 'http://lolapi.games-cube.com/UserHotInfo?qquin=',
-  getTierQueue: 'http://lolapi.games-cube.com/GetTierQueue?tier=',
-  playExtInfo: 'http://lolapi.games-cube.com/UserExtInfo?qquin=',
-  combatList: 'http://lolapi.games-cube.com/CombatList?qquin=',
-  combatDetail: 'http://lolapi.games-cube.com/GameDetail?qquin=',
-  newstVideos: 'http://infoapi.games-cube.com/GetNewstVideos?p=',
-  commenterList: 'http://infoapi.games-cube.com/GetAuthors',
-  newstVideos: 'http://infoapi.games-cube.com/GetNewstVideos?p='
+  championList: '/api/champion',
+  championFree: '/api/Free',
+  championDetail: '/api/GetChampionDetail?champion_id=',
+  playerSearch: '/api/UserArea?keyword=',
+  playerDetail: '/api/UserHotInfo?qquin=',
+  getTierQueue: '/api/GetTierQueue?tier=',
+  playExtInfo: '/api/UserExtInfo?qquin=',
+  combatList: '/api/CombatList?qquin=',
+  combatDetail: '/api/GameDetail?qquin=',
+  newstVideos: '/api/GetNewstVideos?p=',
+  commenterList: '/api/GetAuthors',
+  newstVideos: '/api/GetNewstVideos?p='
 }
 // playerDetail: http://lolapi.games-cube.com/UserHotInfo?qquin={qquin}&vaid={vaid}
 // 段位  http://lolapi.games-cube.com/GetTierQueue?tier={tier}&queue={queue}
