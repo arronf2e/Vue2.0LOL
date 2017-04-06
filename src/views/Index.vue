@@ -71,7 +71,7 @@ export default {
   }
 }
 </script>
-<style lang="less">
+<style lang="less" scoped>
 .index {
   a {
     color: #333 !important;

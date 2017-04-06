@@ -5,10 +5,10 @@ import axios from 'axios'
 Vue.use(Vuex)
 
 const TOKEN = {
-  "DAIWAN-API-TOKEN": "78710-B0810-777C7-C9A85"
+  "DAIWAN-API-TOKEN": "CE368-7CADD-367A3-70A6C"
 }
 const VIDEOTOKEN = {
-  "DAIWAN-API-TOKEN":"B04B8-B5128-ACAB9-52C58"
+  "DAIWAN-API-TOKEN":"89277-D24F4-A0766-90DDD"
 }
 
 const API = {
@@ -23,7 +23,7 @@ const API = {
   combatDetail: '/api/GameDetail?qquin=',
   newstVideos: '/api/GetNewstVideos?p=',
   commenterList: '/api/GetAuthors',
-  newstVideos: '/api/GetNewstVideos?p='
+  newstVideos: 'http://infoapi.games-cube.com/GetNewstVideos?p='
 }
 // playerDetail: http://lolapi.games-cube.com/UserHotInfo?qquin={qquin}&vaid={vaid}
 // 段位  http://lolapi.games-cube.com/GetTierQueue?tier={tier}&queue={queue}
