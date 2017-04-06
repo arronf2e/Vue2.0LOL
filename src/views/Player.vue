@@ -32,7 +32,6 @@
   </div>
 </template>
 <script>
-import { Toast } from 'mint-ui'
 import { mapState, mapActions, mapMutations, mapGetters } from 'vuex'
 import { getAreaName } from '../filters'
 // http://cdn.tgp.qq.com/lol/images/resources/usericon/icon_id.png
