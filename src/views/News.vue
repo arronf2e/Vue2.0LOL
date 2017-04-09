@@ -95,6 +95,7 @@ export default {
         padding-left: 5px;
         .title {
           font-size: 14px;
+          color: #333;
         }
         .summary {
           font-size: 12px;

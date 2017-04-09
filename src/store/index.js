@@ -5,10 +5,10 @@ import axios from 'axios'
 Vue.use(Vuex)
 
 const TOKEN = {
-  "DAIWAN-API-TOKEN": "CE368-7CADD-367A3-70A6C"
+  "DAIWAN-API-TOKEN": "0E0FE-FAD71-DA969-FD500"
 }
 const VIDEOTOKEN = {
-  "DAIWAN-API-TOKEN":"89277-D24F4-A0766-90DDD"
+  "DAIWAN-API-TOKEN":"3A3FE-13C3B-F35D1-11F01"
 }
 
 const API = {
@@ -23,7 +23,8 @@ const API = {
   combatDetail: '/api/GameDetail?qquin=',
   newstVideos: '/api/GetNewstVideos?p=',
   commenterList: '/api/GetAuthors',
-  newstVideos: 'http://infoapi.games-cube.com/GetNewstVideos?p='
+  newstVideos: 'http://infoapi.games-cube.com/GetNewstVideos?p=',
+  speakersList: 'http://infoapi.games-cube.com/GetAuthors'
 }
 // playerDetail: http://lolapi.games-cube.com/UserHotInfo?qquin={qquin}&vaid={vaid}
 // 段位  http://lolapi.games-cube.com/GetTierQueue?tier={tier}&queue={queue}
@@ -52,7 +53,8 @@ const store = new Vuex.Store({
     combatDetail: null,
     newstVideos: [],
     newstNews: null,
-    bannerNews: null
+    bannerNews: null,
+    speakersList: []
     // showKeybord: false
   },
   mutations: {
@@ -110,6 +112,9 @@ const store = new Vuex.Store({
     get_newst_videos(state, data) {
       state.title = '视频'
       state.newstVideos = state.newstVideos.concat(data)
+    },
+    get_speakers_list(state, data) {
+      state.speakersList = data
     },
     get_newst_news(state) {
       // 有点问题，暂时用本地数据代替
@@ -224,6 +229,15 @@ const store = new Vuex.Store({
     },
     GET_NEWST_NEWS(context) {
       context.commit('get_newst_news')
+    },
+    GET_SPEAKERS_LIST(context) {
+      axios.get(API.speakersList, {
+        headers: VIDEOTOKEN
+      }).then((res) => {
+        if (res.data.code == 0) {
+          context.commit('get_speakers_list', res.data.data)
+        }
+      })
     }
   },
   getters: {

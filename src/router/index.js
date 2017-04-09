@@ -52,6 +52,10 @@ export default new Router({
           path: 'news',
           name: 'news',
           component: require('../views/News')
+        }, {
+          path: 'speakers',
+          name: 'speakers',
+          component: require('../views/Speakers')
         }
       ]
     }
