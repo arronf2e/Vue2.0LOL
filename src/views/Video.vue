@@ -1,7 +1,6 @@
 <template>
   <div class="videos">
     <div class="videos-list">
-      <mu-raised-button label="test" @click="toggle()"/>
       <NewstVideos></NewstVideos>
       <mu-drawer :open="open" right>
         <mu-appbar title="视频菜单"/>
