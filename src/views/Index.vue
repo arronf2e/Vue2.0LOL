@@ -22,6 +22,7 @@
         <mu-bottom-nav-item value="news" title="资讯" icon="fiber_new"/>
         <mu-bottom-nav-item value="player" title="玩家" icon="person"/>
         <mu-bottom-nav-item value="championList" title="英雄" icon="pets"/>
+        <mu-bottom-nav-item value="speakers" title="解说" icon="face"/>
         <mu-bottom-nav-item value="video" title="视频" icon="ondemand_video"/>
       </mu-bottom-nav>
     </mu-paper>
@@ -49,7 +50,9 @@ export default {
       case 'video':
           this.bottomNav = 'video'
           break
-      
+      case 'speakers':
+          this.bottomNav = 'speakers'
+          break
     }
   },
   data () {
@@ -71,7 +74,7 @@ export default {
   }
 }
 </script>
-<style lang="less">
+<style lang="less" scoped>
 .index {
   a {
     color: #333 !important;

@@ -25,7 +25,7 @@
       </mu-tabs>
       <div class="champion-detail-tabinfo">
         <div class="skills" v-if="selected == 1">
-          <p class="title"><icon name="lol" :scale="2"></icon><span>技能介绍</span></p>
+          <p class="title"><span>技能介绍</span></p>
           <div class="skills-list">
             <mu-flexbox class="mt8" orient="horizontal" v-for="skill in skills">
               <mu-flexbox-item order="0" class="flex-demo" grow=1>
@@ -41,13 +41,13 @@
               </mu-flexbox-item>
             </mu-flexbox>
           </div>
-          <p class="title"><icon name="lol" :scale="2"></icon><span>技能加点推荐</span></p>
+          <p class="title"><span>技能加点推荐</span></p>
           <p class="add-skill" v-for="(key,val) in addSkill">
             <span>{{ fp[val] }}：</span> {{ key['add-point']}}
           </p>
         </div>
         <div class="skins" v-else>
-          <p class="title"><icon name="lol" :scale="2"></icon><span>点击皮肤可以观看介绍视频哦</span></p>
+          <p class="title"><span>点击皮肤可以观看介绍视频哦</span></p>
           <ul>
             <li v-for="(skin,index) in skins" v-if="index > 0">
               <a :href="skin.videourl">
