@@ -2,8 +2,16 @@
   "name": "vue-lol",
   "version": "1.0.0",
   "description": "League of Legends Data project",
-  "author": "njarron <hao.zhang@baoz.cn>",
-  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arronf2e/Vue2.0LOL"
+  },
+  "author": "Arron",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/arronf2e/Vue2.0LOL/issues"
+  },
+  "homepage": "https://github.com/arronf2e/Vue2.0LOL#readme",
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "node build/build.js"
